@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  }
+
+.contenedor{
+    height: 100vh;
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.align-center{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;    
+}
+
+.contenidoForm{
+    height: 35rem;
+    border-radius: 15px;
+    background-color: #7d13ad;
+}
+
+.pb-1{
+    padding-bottom: 1.5rem;
+}
+
+.mt-5{
+    margin-top: 1.5rem;
+}
+
+.mb-5{
+    margin-bottom: 1.5rem;
+}
+
+.p-2{
+    padding: 2rem;
+}
+@media only screen and (max-width: 767px) {
+    [class*="mobile hidden"],
+    [class*="tablet only"]:not(.mobile),
+    [class*="computer only"]:not(.mobile),
+    [class*="large monitor only"]:not(.mobile),
+    [class*="widescreen monitor only"]:not(.mobile),
+    [class*="or lower hidden"] {
+      display: none !important;
+    }
+}
+
+/*
+Stylos form usuarios
+*/
+
+.menuTop{
+    border-radius: 0px;
+}
