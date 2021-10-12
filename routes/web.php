@@ -17,21 +17,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 //view login -> index
-Route::get('/',IndexController::class)->name('login')->middleware('guest');
+Route::get('/', IndexController::class)->name('login')->middleware('guest');
 
 //view home 
-Route::get('home',[HomeController::class, 'home'])->name('home')->middleware('auth');
+Route::get('home', [HomeController::class, 'home'])->name('home')->middleware('auth');
 
 
 //view users
-Route::get('users',[UserController::class, 'usersView'])->name('users')->middleware('auth');
+Route::get('users', [UserController::class, 'usersView'])->name('users')->middleware('auth');
 //Login post users
-Route::post('users/login',[UserController::class, 'login']);
+Route::post('users/login', [UserController::class, 'login']);
 //Logout user
-Route::post('users/logout',[UserController::class, 'logout']);
+Route::post('users/logout', [UserController::class, 'logout']);
 
 
-//create post  usuers
-Route::post('users/create',[UserController::class, 'create']);
-
-
+//create post users
+Route::post('users/create', [UserController::class, 'create']);
+//Edit get user to view
+Route::get('users/{user}/edit', [UserController::class, 'editView'])->name('users.edit')->middleware('auth');
+//PUT edit user
+Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');

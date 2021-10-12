@@ -1,37 +1,7 @@
-<!DOCTYPE html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link rel="shortcut icon" href="img/pen.svg">
-    <title>Inicio sesión</title>
-
-</head>
-
-<body>
-    <div class="ui vertical violet inverted labeled icon left thin sidebar pointing menu">
-        <a class="header item">NotAppp </a>
-        @if (Auth::user()->id_perfil === 1)
-            <a href="{{ route('home') }}" class="  item"><i class="home icon"></i>Home</a>
-            <a href="#" class="active item"><i class="user icon"></i> Users</a>
-            <a href="#" class="item"><i class="user secret icon"></i> Teachers</a>
-            <a href="#" class="item"><i class="graduation cap icon"></i> Students</a>
-            <a href="#" class="item"><i class="book icon"></i> Subjects</a>
-        @else
-            <a href="{{ route('home') }}" class="  item"><i class="home icon"></i>Home</a>
-            <a href="#" class="item"><i class="calculator icon"></i> Notas</a>
-        @endif
-
-    </div>
+@extends('layouts.plantilla')
+@section('tittle', 'users')
+@section('lateralMenuUsers', 'Users')
+@section('content')
 
     <div class="pusher">
         <div class="ui  grid">
@@ -57,9 +27,8 @@
 
                         <div class="ui segment">
                             <div class="ui raised segment">
-                                <a class="ui violet ribbon label"><i
-                                        class="plus square inverted pink icon"></i>Usuarios</a>
-                                <span></i>Formulario de usuarios</span>
+                                <a class="ui violet ribbon label"><i class="plus square inverted pink icon"></i>Usuarios</a>
+                                <span></i>Users form</span>
                                 <p></p>
                             </div>
 
@@ -81,7 +50,7 @@
                                         <input type="password" name="password">
                                     </div>
                                     <div class="field">
-                                        <label>Estado</label>
+                                        <label>State</label>
                                         <select name='estado' class="ui dropdown">
                                             <option value="1">Active</option>
                                             <option value="2">Inactive</option>
@@ -89,11 +58,12 @@
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label>Perfil</label>
+                                    <label>Profile</label>
 
                                     <select name='perfil' class="ui dropdown">
-                                        <option value="1">Admin</option>
-                                        <option value="2">Docente</option>
+                                        @foreach ($profiles as $profile)
+                                            <option value="{{ $profile->id }}">{{ $profile->perfil }}</option>
+                                        @endforeach
                                     </select>
 
                                 </div>
@@ -144,10 +114,10 @@
                             <table class="ui selectable  celled fixed  table">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Correo</th>
-                                        <th>Estado</th>
-                                        <th>Perfil</th>
+                                        <th>Name</th>
+                                        <th>E-mail</th>
+                                        <th>Status</th>
+                                        <th>Profile</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -163,10 +133,11 @@
                                             <td>{{ $estado }}</td>
                                             <td>{{ $perfil }}</td>
                                             <td class="center aligned">
-                                                <div class="ui semall buttons">
-                                                    <a href="" class="left  floated ui icon button pink ">Edit</a>
-                                                    <div class="or" style="font"></div>
-                                                    <a href="" class="right floated ui icon button  violet  ">Delete</a>
+                                                <div class="inline aligned">
+                                                    <a href="{{ route('users.edit', $user) }}"><i
+                                                            class="purple edit outline link icon"></i></a>
+                                                    <a href="{{ route('users.edit', $user) }}"><i
+                                                            class="pink trash link icon"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -182,9 +153,4 @@
 
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
-</body>
-
-</html>
+    @endsection
