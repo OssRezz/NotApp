@@ -25,10 +25,6 @@ Route::get('home', [HomeController::class, 'home'])->name('home')->middleware('a
 
 //view users
 Route::get('users', [UserController::class, 'usersView'])->name('users')->middleware('auth');
-//Login post users
-Route::post('users/login', [UserController::class, 'login']);
-//Logout user
-Route::post('users/logout', [UserController::class, 'logout']);
 
 
 //create post users
@@ -37,3 +33,9 @@ Route::post('users/create', [UserController::class, 'create']);
 Route::get('users/{user}/edit', [UserController::class, 'editView'])->name('users.edit')->middleware('auth');
 //PUT edit user
 Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
+
+
+//Login post users
+Route::post('users/login', [UserController::class, 'login']);
+//Logout user
+Route::post('users/logout', [UserController::class, 'logout']);

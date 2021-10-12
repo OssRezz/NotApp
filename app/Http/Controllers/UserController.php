@@ -48,6 +48,7 @@ class UserController extends Controller
             return redirect()->back()->with('message', 'The user has been registered successfully!');
         }
     }
+    
 
 
     public function login(Request $request)
@@ -70,6 +71,7 @@ class UserController extends Controller
         }
     }
 
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -78,6 +80,7 @@ class UserController extends Controller
 
         return redirect()->to('/')->with('message', 'You are logged out!');
     }
+
 
     public function editView(Request $request, tbl_users $user)
     {
@@ -88,6 +91,7 @@ class UserController extends Controller
 
         return view('user.editusers', compact('user', 'profiles', 'userProfile'));
     }
+
 
     public function update(Request $request, tbl_users $user)
     {
