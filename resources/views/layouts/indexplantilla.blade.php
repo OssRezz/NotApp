@@ -22,21 +22,6 @@
 <body>
     @yield('content')
 
-    <div class="ui vertical violet inverted labeled icon left thin sidebar pointing menu">
-        <a class="header item">NotAppp </a>
-        @if (Auth::user()->id_perfil === 1)
-
-            <a href="{{ route('home') }}" class="item"><i class="home icon"></i>Home</a>
-            <a href="{{ route('users') }}" class="item"><i class="user icon"></i> Users</a>
-            <a href="{{ route('teacher') }}" class="item"><i class="user secret icon"></i> Teachers</a>
-            <a href="{{ route('students') }}" class="item"><i class="graduation cap icon"></i> Students</a>
-            <a href="{{ route('subjects') }}" class="item"><i class="book icon"></i> Subjects</a>
-        @else
-            <a href="{{ route('home') }}" class="  item"><i class="home icon"></i>Home</a>
-            <a href="{{ route('score') }}" class="item"><i class="calculator icon"></i> Score</a>
-        @endif
-
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>

@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('title', 'Users')
+@section('title', 'Teachers')
 @section('content')
 
     <div class="pusher">
@@ -26,50 +26,37 @@
 
                         <div class="ui segment">
                             <div class="ui raised segment">
-                                <a class="ui violet ribbon label"><i class="plus square inverted pink icon"></i>Usuarios</a>
-                                <span></i>Users form</span>
+                                <a class="ui violet ribbon label"><i class="plus square inverted pink icon"></i>Teachers</a>
+                                <span></i>Teachers form</span>
                                 <p></p>
                             </div>
 
-                            <form class="ui form segment" action="users/create" method="POST">
+                            <form class="ui form segment" action="teacher/create" method="POST">
                                 @csrf
                                 <div class="two fields">
                                     <div class="field">
+                                        <label>ID teacher</label>
+                                        <input placeholder="id teacher" name="cc_teacher" type="number">
+                                    </div>
+                                    <div class="field">
                                         <label>Name</label>
-                                        <input placeholder="First Name" name="nombre" type="text">
-                                    </div>
-                                    <div class="field">
-                                        <label>E-mail</label>
-                                        <input placeholder="E-mail" name="email" type="email">
+                                        <input placeholder="teacher name" name="nombre" type="text">
                                     </div>
                                 </div>
-                                <div class="two fields">
-                                    <div class="field">
-                                        <label>Password</label>
-                                        <input type="password" name="password">
-                                    </div>
-                                    <div class="field">
-                                        <label>State</label>
-                                        <select name='estado' class="ui dropdown">
-                                            <option value="1">Active</option>
-                                            <option value="2">Inactive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label>Profile</label>
 
-                                    <select name='perfil' class="ui dropdown">
-                                        @foreach ($profiles as $profile)
-                                            <option value="{{ $profile->id }}">{{ $profile->perfil }}</option>
+                                <div class="field">
+                                    <label>Subject</label>
+
+                                    <select name='subject' class="ui dropdown">
+                                        @foreach ($subjects as $subjects)
+                                            <option value="{{ $subjects->id }}">{{ $subjects->nombre }}</option>
                                         @endforeach
                                     </select>
-
                                 </div>
 
                                 <br>
                                 <div class="field align-center">
-                                    <input class="ui  violet inverted button" type="submit" value="Add user">
+                                    <input class="ui  violet inverted button" type="submit" value="Add teacher">
                                 </div>
 
 
@@ -111,32 +98,25 @@
                             </div>
 
                             <table class="ui selectable  celled fixed  table">
+
                                 <thead>
                                     <tr>
+                                        <th>ID teacher</th>
                                         <th>Name</th>
-                                        <th>E-mail</th>
-                                        <th>Status</th>
-                                        <th>Profile</th>
-                                        <th>Action</th>
+                                        <th>Subject</th>
+                                        <th>Action </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($user as $user)
+                                    @foreach ($teachers as $teachers)
                                         <tr>
-                                            <td>{{ $user->nombre }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            @php
-                                                $estado = $user->estado === 1 ? 'Active' : 'Inactive';
-                                                $perfil = $user->id_perfil === 1 ? 'Admin' : 'Docente';
-                                            @endphp
-                                            <td>{{ $estado }}</td>
-                                            <td>{{ $perfil }}</td>
+                                            <td>{{ $teachers->cc_teacher }}</td>
+                                            <td>{{ $teachers->teacher }}</td>
+                                            <td>{{ $teachers->nombre }}</td>
                                             <td class="center aligned">
                                                 <div class="inline aligned">
-                                                    <a href="{{ route('users.edit', $user) }}"><i
-                                                            class="purple edit outline link icon"></i></a>
-                                                    <a href="{{ route('users.edit', $user) }}"><i
-                                                            class="pink trash link icon"></i></a>
+                                                    <a href="{{ route('teacher.edit', $teachers) }}"><i class="purple edit outline link icon"></i></a>
+                                                    <a href="{{ route('teacher.edit', $teachers) }}"><i class="pink trash link icon"></i></a>
                                                 </div>
                                             </td>
                                         </tr>

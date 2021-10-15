@@ -1,6 +1,5 @@
 @extends('layouts.plantilla')
-@section('tittle','Home')
-@section('lateralMenuHome','Home')
+@section('title','Home')
 @section('content')
 
 

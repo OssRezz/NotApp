@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('tittle', 'Users edit')
+@section('title', 'Users edit')
 
 @section('content')
 

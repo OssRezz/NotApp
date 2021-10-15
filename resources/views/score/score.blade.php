@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('title', 'Users')
+@section('title', 'Score')
 @section('content')
 
     <div class="pusher">
@@ -26,50 +26,45 @@
 
                         <div class="ui segment">
                             <div class="ui raised segment">
-                                <a class="ui violet ribbon label"><i class="plus square inverted pink icon"></i>Usuarios</a>
-                                <span></i>Users form</span>
+                                <a class="ui violet ribbon label"><i class="plus square inverted pink icon"></i>Scores</a>
+                                <span></i>Scores form</span>
                                 <p></p>
                             </div>
 
-                            <form class="ui form segment" action="users/create" method="POST">
+                            <form class="ui form segment" action="score/create" method="POST">
                                 @csrf
-                                <div class="two fields">
-                                    <div class="field">
-                                        <label>Name</label>
-                                        <input placeholder="First Name" name="nombre" type="text">
-                                    </div>
-                                    <div class="field">
-                                        <label>E-mail</label>
-                                        <input placeholder="E-mail" name="email" type="email">
-                                    </div>
-                                </div>
-                                <div class="two fields">
-                                    <div class="field">
-                                        <label>Password</label>
-                                        <input type="password" name="password">
-                                    </div>
-                                    <div class="field">
-                                        <label>State</label>
-                                        <select name='estado' class="ui dropdown">
-                                            <option value="1">Active</option>
-                                            <option value="2">Inactive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label>Profile</label>
 
-                                    <select name='perfil' class="ui dropdown">
-                                        @foreach ($profiles as $profile)
-                                            <option value="{{ $profile->id }}">{{ $profile->perfil }}</option>
+                                <div class="field">
+                                    <label>Student</label>
+
+                                    <select name='student' class="ui dropdown">
+                                        @foreach ($students as $students)
+                                            <option value="{{ $students->cc_student }}">{{ $students->nombre }}</option>
                                         @endforeach
                                     </select>
-
                                 </div>
+
+                                <div class="field">
+                                    <label>Subject</label>
+
+                                    <select name='subject' class="ui dropdown">
+                                        @foreach ($subjects as $subjects)
+                                            <option value="{{ $subjects->id }}">{{ $subjects->nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="one field">
+                                    <div class="field">
+                                        <label>Score</label>
+                                        <input placeholder="student score" name="score" type="number" step="0.01">
+                                    </div>
+                                </div>
+
 
                                 <br>
                                 <div class="field align-center">
-                                    <input class="ui  violet inverted button" type="submit" value="Add user">
+                                    <input class="ui  violet inverted button" type="submit" value="Add score">
                                 </div>
 
 
@@ -109,33 +104,27 @@
 
                                 </div>
                             </div>
-
                             <table class="ui selectable  celled fixed  table">
+
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>E-mail</th>
-                                        <th>Status</th>
-                                        <th>Profile</th>
-                                        <th>Action</th>
+                                        <th>Student</th>
+                                        <th>Subject</th>
+                                        <th>Score</th>
+                                        <th>Action </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($user as $user)
+                                    @foreach ($score as $score)
                                         <tr>
-                                            <td>{{ $user->nombre }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            @php
-                                                $estado = $user->estado === 1 ? 'Active' : 'Inactive';
-                                                $perfil = $user->id_perfil === 1 ? 'Admin' : 'Docente';
-                                            @endphp
-                                            <td>{{ $estado }}</td>
-                                            <td>{{ $perfil }}</td>
+                                            <td>{{ $score->student }}</td>
+                                            <td>{{ $score->subject }}</td>
+                                            <td>{{ $score->score }}</td>
                                             <td class="center aligned">
                                                 <div class="inline aligned">
-                                                    <a href="{{ route('users.edit', $user) }}"><i
+                                                    <a href="{{ route('score.edit', $score) }}"><i
                                                             class="purple edit outline link icon"></i></a>
-                                                    <a href="{{ route('users.edit', $user) }}"><i
+                                                    <a href="{{ route('score.edit', $score) }}"><i
                                                             class="pink trash link icon"></i></a>
                                                 </div>
                                             </td>
