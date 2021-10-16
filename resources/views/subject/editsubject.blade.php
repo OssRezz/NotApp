@@ -12,7 +12,12 @@
                             <a href="#" class="item" id="btnHb"><i class="bars icon"></i></a>
                             <div class="item" id="">{{ Auth::user()->nombre }}</div>
                             <div class="item right">
-                                <div class="ui violet  button"><i class="sign-out alternate icon"></i> Log-out</div>
+                                <form action="users/logout" method="POST">
+                                    @csrf
+                                    <a href="#" class="ui violet  button" onclick="this.closest('form').submit()"><i
+                                            class="sign-out alternate icon"></i>Log-out
+                                    </a>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -31,7 +36,8 @@
                                 <p></p>
                             </div>
 
-                            <form class="ui form segment" action="{{ route('subjects.update', $subjects) }}" method="POST">
+                            <form class="ui form segment" action="{{ route('subjects.update', $subjects) }}"
+                                method="POST">
 
                                 {{-- we had tu use method('put') because HTML can't not understant it --}}
                                 @method('put')
@@ -72,5 +78,7 @@
             </div>
 
         </div>
+    </div>
 
-    @endsection
+
+@endsection

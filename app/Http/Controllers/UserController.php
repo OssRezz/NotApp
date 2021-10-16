@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function usersView()
     {
-        $user = tbl_users::orderBy('id', 'asc')->paginate(10);
+        $user = tbl_users::orderBy('id', 'asc')->paginate(5);
         $profiles = tbl_profiles::all();
         return view('user/users', compact('user', 'profiles'));
     }
@@ -48,7 +48,7 @@ class UserController extends Controller
             return redirect()->back()->with('message', 'The user has been registered successfully!');
         }
     }
-    
+
 
 
     public function login(Request $request)
@@ -101,7 +101,7 @@ class UserController extends Controller
             'perfil' => 'required',
             'estado' => 'required'
         ]);
-        
+
         $user->nombre = $request->nombre;
         $user->email = $request->email;
         $user->estado = $request->estado;
@@ -112,5 +112,15 @@ class UserController extends Controller
         } else {
             return redirect()->back()->with('message', 'You can\'t not update the user');
         }
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $user = tbl_users::Where('nombre', 'LIKE', '%' . $search . '%')
+            ->orWhere('email', 'LIKE', '%' . $search . '%')->paginate(10);
+
+        return view('user.searchuser', compact('user'));
     }
 }

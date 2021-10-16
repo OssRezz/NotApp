@@ -10,7 +10,7 @@ class StudentController extends Controller
 {
     public function studentsView()
     {
-        $students = tbl_students::orderBy('id', 'desc')->paginate(10);
+        $students = tbl_students::orderBy('id', 'desc')->paginate(5);
         return view('student/student', compact('students'));
     }
 
@@ -57,5 +57,14 @@ class StudentController extends Controller
         } else {
             return redirect()->back()->with('message', 'Student can"t not be update');
         }
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $students = tbl_students::where('nombre', 'LIKE', '%' . $search . '%')->paginate(10);
+
+        return view('student.searchstudent', compact('students'));
     }
 }

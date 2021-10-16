@@ -30,75 +30,7 @@
                     <div class="container">
 
                         <div class="ui segment">
-                            <div class="ui raised segment">
-                                <a class="ui violet ribbon label"><i class="plus square inverted pink icon"></i>Students</a>
-                                <span></i>Students form</span>
-                                <p></p>
-                            </div>
 
-                            <form class="ui form segment" action="students/create" method="POST">
-                                @csrf
-
-                                <div class="one field">
-                                    <div class="field">
-                                        <label>ID student</label>
-                                        <input placeholder="id student" name="cc_student" type="number">
-                                    </div>
-                                </div>
-
-                                <div class="one field">
-                                    <div class="field">
-                                        <label>Name</label>
-                                        <input placeholder="student name" name="nombre" type="text">
-                                    </div>
-                                </div>
-
-                                <div class="one field">
-                                    <div class="field">
-                                        <label>Email</label>
-                                        <input placeholder="student email" name="email" type="email">
-                                    </div>
-                                </div>
-
-
-                                <br>
-                                <div class="field align-center">
-                                    <input class="ui  violet inverted button" type="submit" value="Add student">
-                                </div>
-
-
-                            </form>
-                            @if ($errors->any())
-                                <x-alert :mensaje="$errors" />
-                            @endif
-
-                            @if (session()->has('message'))
-                                <div class="ui violet message">
-                                    <i class="close icon"></i>
-                                    <div class="header">
-                                        {{ session()->get('message') }}
-                                    </div>
-                                </div>
-                            @endif
-
-                        </div>
-
-                        <div class="ui segment">
-
-
-
-                            <div class="ui right aligned container">
-
-                                <form action="students/search" method="GET">
-
-                                    <div class="ui action input">
-                                        <input type="text" name="search" placeholder="Search for subjects...">
-                                        <button type="submit" class="ui inverted purple button">Search</button>
-                                    </div>
-
-                                </form>
-
-                            </div>
 
                             <table class="ui selectable  celled fixed  table">
 

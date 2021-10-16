@@ -26,6 +26,11 @@ Route::get('/', IndexController::class)->name('login')->middleware('guest');
 //view home 
 Route::get('home', [HomeController::class, 'home'])->name('home')->middleware('auth');
 
+//Login post users
+Route::post('users/login', [UserController::class, 'login']);
+//Logout user
+Route::post('users/logout', [UserController::class, 'logout']);
+
 
 //view users
 Route::get('users', [UserController::class, 'usersView'])->name('users')->middleware('auth');
@@ -35,12 +40,8 @@ Route::post('users/create', [UserController::class, 'create']);
 Route::get('users/{user}/edit', [UserController::class, 'editView'])->name('users.edit')->middleware('auth');
 //PUT edit user
 Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
-
-
-//Login post users
-Route::post('users/login', [UserController::class, 'login']);
-//Logout user
-Route::post('users/logout', [UserController::class, 'logout']);
+//Search user
+Route::get('users/search', [UserController::class, 'search']);
 
 
 //View teacher
@@ -51,7 +52,8 @@ Route::post('teacher/create', [TeacherController::class, 'create']);
 Route::get('teacher/{teachers}/edit', [TeacherController::class, 'editView'])->name('teacher.edit')->middleware('auth');
 //update teacher
 Route::put('teacher/{teachers}', [TeacherController::class, 'update'])->name('teacher.update');
-
+//Search teacher
+Route::get('teacher/search', [TeacherController::class, 'search']);
 
 //View Student
 Route::get('students', [StudentController::class, 'studentsView'])->name('students')->middleware('auth');
@@ -61,7 +63,8 @@ Route::post('students/create', [StudentController::class, 'create']);
 Route::get('students/{students}/edit', [StudentController::class, 'editView'])->name('student.edit')->middleware('auth');
 //update student
 Route::put('students/{students}', [StudentController::class, 'update'])->name('student.update');
-
+//Search student
+Route::get('students/search', [StudentController::class, 'search']);
 
 
 //View subjects
@@ -72,6 +75,8 @@ Route::post('subjects/create', [SubjectController::class, 'create']);
 Route::get('subjects/{subjects}/edit', [SubjectController::class, 'editView'])->name('subjects.edit')->middleware('auth');
 //update subjects
 Route::put('subjects/{subjects}', [SubjectController::class, 'update'])->name('subjects.update');
+//Search subject
+Route::get('subjects/search', [SubjectController::class, 'search']);
 
 
 //View score
@@ -82,3 +87,5 @@ Route::post('score/create', [ScoreController::class, 'create']);
 Route::get('score/{score}/edit', [ScoreController::class, 'editView'])->name('score.edit')->middleware('auth');
 //update score
 Route::put('score/{score}', [ScoreController::class, 'update'])->name('score.update');
+//Search score
+Route::get('score/search', [ScoreController::class, 'search']);

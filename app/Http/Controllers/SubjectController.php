@@ -9,7 +9,7 @@ class SubjectController extends Controller
 {
     public function subjectsView()
     {
-        $subjects = tbl_subjects::orderBy('id', 'desc')->paginate(10);
+        $subjects = tbl_subjects::orderBy('id', 'desc')->paginate(5);
         return view('subject/subjects', compact('subjects'));
     }
 
@@ -46,5 +46,13 @@ class SubjectController extends Controller
         } else {
             return redirect()->back()->with('message', 'Subject can"t not be update');
         }
+    }
+    
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $subjects = tbl_subjects::where('nombre','LIKE','%' . $search . '%')->paginate(5);
+        return view('subject.searchsubject', compact('subjects'));
     }
 }

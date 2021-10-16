@@ -12,7 +12,12 @@
                             <a href="#" class="item" id="btnHb"><i class="bars icon"></i></a>
                             <div class="item" id="">{{ Auth::user()->nombre }}</div>
                             <div class="item right">
-                                <div class="ui violet  button"><i class="sign-out alternate icon"></i> Log-out</div>
+                                <form action="users/logout" method="POST">
+                                    @csrf
+                                    <a href="#" class="ui violet  button" onclick="this.closest('form').submit()"><i
+                                            class="sign-out alternate icon"></i>Log-out
+                                    </a>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -79,22 +84,17 @@
                         <div class="ui segment">
 
 
-                            <div class="ui one item menu">
-                                <div class="ui left category search item">
+                            <div class="ui right aligned container">
 
-                                    <div class="ui transparent icon input" style="padding-left: 0.2rem;">
-                                        <input class="prompt" type="text" placeholder="Search for users...">
-                                        <div class="ui animated violet inverted  button" tabindex="0">
-                                            <div class="visible content">
-                                                <a href=""><i class="search link icon violet"></i></a>
-                                            </div>
-                                            <div class="hidden content">
-                                                <a href=""><i class="right arrow icon inverted"></i></a>
-                                            </div>
-                                        </div>
+                                <form action="teacher/search" method="GET">
+
+                                    <div class="ui action input">
+                                        <input type="text" name="search" placeholder="Teachers or subjects...">
+                                        <button type="submit" class="ui inverted purple button">Search</button>
                                     </div>
 
-                                </div>
+                                </form>
+
                             </div>
 
                             <table class="ui selectable  celled fixed  table">
@@ -108,21 +108,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($teachers as $teachers)
+                                    @foreach ($teachers as $teacher)
                                         <tr>
-                                            <td>{{ $teachers->cc_teacher }}</td>
-                                            <td>{{ $teachers->teacher }}</td>
-                                            <td>{{ $teachers->nombre }}</td>
+                                            <td>{{ $teacher->cc_teacher }}</td>
+                                            <td>{{ $teacher->teacher }}</td>
+                                            <td>{{ $teacher->nombre }}</td>
                                             <td class="center aligned">
                                                 <div class="inline aligned">
-                                                    <a href="{{ route('teacher.edit', $teachers) }}"><i class="purple edit outline link icon"></i></a>
-                                                    <a href="{{ route('teacher.edit', $teachers) }}"><i class="pink trash link icon"></i></a>
+                                                    <a href="{{ route('teacher.edit', $teacher) }}"><i
+                                                            class="purple edit outline link icon"></i></a>
+                                                    <a href="{{ route('teacher.edit', $teacher) }}"><i
+                                                            class="pink trash link icon"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            <div class="ui right aligned container">
+                                <span>{{ $teachers->links('vendor/pagination/semantic-ui', ['paginator' => $teachers]) }}</span>
+                            </div>
 
                         </div>
 
@@ -131,5 +137,6 @@
             </div>
 
         </div>
+    </div>
 
-    @endsection
+@endsection

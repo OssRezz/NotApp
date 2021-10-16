@@ -12,7 +12,12 @@
                             <a href="#" class="item" id="btnHb"><i class="bars icon"></i></a>
                             <div class="item" id="">{{ Auth::user()->nombre }}</div>
                             <div class="item right">
-                                <div class="ui violet  button"><i class="sign-out alternate icon"></i> Log-out</div>
+                                <form action="users/logout" method="POST">
+                                    @csrf
+                                    <a href="#" class="ui violet  button" onclick="this.closest('form').submit()"><i
+                                            class="sign-out alternate icon"></i>Log-out
+                                    </a>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -39,21 +44,24 @@
                                 <div class="one field">
                                     <div class="field">
                                         <label>ID student</label>
-                                        <input placeholder="id student" name="cc_student" value="{{ $students->cc_student }}"  type="number">
+                                        <input placeholder="id student" name="cc_student"
+                                            value="{{ $students->cc_student }}" type="number">
                                     </div>
                                 </div>
 
                                 <div class="one field">
                                     <div class="field">
                                         <label>Name</label>
-                                        <input placeholder="student name" name="nombre" value="{{ $students->nombre }}"  type="text">
+                                        <input placeholder="student name" name="nombre" value="{{ $students->nombre }}"
+                                            type="text">
                                     </div>
                                 </div>
 
                                 <div class="one field">
                                     <div class="field">
                                         <label>Email</label>
-                                        <input placeholder="student email" name="email" value="{{ $students->email }}"  type="email">
+                                        <input placeholder="student email" name="email" value="{{ $students->email }}"
+                                            type="email">
                                     </div>
                                 </div>
 
@@ -86,5 +94,7 @@
             </div>
 
         </div>
+    </div>
 
-    @endsection
+
+@endsection

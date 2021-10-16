@@ -14,12 +14,11 @@ class ScoreController extends Controller
         $students = tbl_students::All();
         $subjects = tbl_subjects::All();
 
-        $score = tbl_scores::orderBy('id', 'desc')->paginate(10);
 
         $score = tbl_scores::join("tbl_subjects", "tbl_subjects.id", "=", "tbl_scores.id_subject")
             ->join("tbl_students", "tbl_students.id", "=", "tbl_scores.id_student")
             ->select("tbl_scores.id", "tbl_subjects.nombre as subject", "tbl_students.nombre as student", "score")
-            ->get();
+            ->orderBy('id', 'desc')->paginate(5);
 
 
         return view('score.score', compact('score', 'students', 'subjects'));
@@ -78,5 +77,20 @@ class ScoreController extends Controller
         } else {
             return redirect()->back()->with('message', 'Score  can"t not be update');
         }
+    }
+
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $score = tbl_scores::join("tbl_subjects", "tbl_subjects.id", "=", "tbl_scores.id_subject")
+            ->join("tbl_students", "tbl_students.id", "=", "tbl_scores.id_student")
+            ->select("tbl_scores.id", "tbl_subjects.nombre as subject", "tbl_students.nombre as student", "score")
+            ->where('tbl_subjects.nombre', 'LIKE', '%' . $search . '%')
+            ->orwhere('tbl_students.nombre', 'LIKE', '%' . $search . '%')
+            ->paginate(10);
+
+        return view('score.searchscore', compact('score'));
     }
 }

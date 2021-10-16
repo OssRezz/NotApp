@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('title', 'Subjects')
+@section('title', 'Search subjects')
 @section('content')
 
     <div class="pusher">
@@ -29,60 +29,9 @@
                 <div class="one column">
                     <div class="container">
 
-                        <div class="ui segment">
-                            <div class="ui raised segment">
-                                <a class="ui violet ribbon label"><i class="plus square inverted pink icon"></i>Subjects</a>
-                                <span></i>Subjects form</span>
-                                <p></p>
-                            </div>
-
-                            <form class="ui form segment" action="subjects/create" method="POST">
-                                @csrf
-
-                                <div class="one field">
-                                    <div class="field">
-                                        <label>Subject name</label>
-                                        <input placeholder="subject name" name="nombre" type="text">
-                                    </div>
-                                </div>
-
-                                <br>
-                                <div class="field align-center">
-                                    <input class="ui  violet inverted button" type="submit" value="Add subject">
-                                </div>
-
-
-                            </form>
-                            @if ($errors->any())
-                                <x-alert :mensaje="$errors" />
-                            @endif
-
-                            @if (session()->has('message'))
-                                <div class="ui violet message">
-                                    <i class="close icon"></i>
-                                    <div class="header">
-                                        {{ session()->get('message') }}
-                                    </div>
-                                </div>
-                            @endif
-
-                        </div>
 
                         <div class="ui segment">
 
-
-                            <div class="ui right aligned container">
-
-                                <form action="subjects/search" method="GET">
-
-                                    <div class="ui action input">
-                                        <input type="text" name="search" placeholder="Search for subjects...">
-                                        <button type="submit" class="ui inverted purple button">Search</button>
-                                    </div>
-
-                                </form>
-
-                            </div>
 
                             <table class="ui selectable  celled fixed  table">
 
@@ -123,5 +72,6 @@
 
         </div>
     </div>
+
 
 @endsection

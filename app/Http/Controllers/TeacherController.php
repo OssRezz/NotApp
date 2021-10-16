@@ -17,8 +17,9 @@ class TeacherController extends Controller
     {
         // $teachers = tbl_teachers::orderBy('id', 'desc')->paginate(10);
         $teachers = tbl_teachers::join("tbl_subjects", "tbl_subjects.id", "=", "tbl_teachers.subject")
-            ->select("tbl_subjects.id", "cc_teacher", "tbl_teachers.nombre as teacher", "tbl_subjects.nombre", "subject")
-            ->get();
+            ->select("tbl_teachers.id", "cc_teacher", "tbl_teachers.nombre as teacher", "tbl_subjects.nombre", "subject")
+            ->paginate(5);
+
 
         $subjects = tbl_subjects::all();
         return view('teacher/teacher', compact('teachers', 'subjects'));
@@ -74,5 +75,17 @@ class TeacherController extends Controller
         } else {
             return redirect()->back()->with('message', 'Teacher can"t not be update');
         }
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $teachers = tbl_teachers::join("tbl_subjects", "tbl_subjects.id", "=", "tbl_teachers.subject")
+            ->select("tbl_teachers.id", "cc_teacher", "tbl_teachers.nombre as teacher", "tbl_subjects.nombre", "subject")
+            ->Where('tbl_teachers.nombre', 'LIKE', '%' . $search . '%')
+            ->orWhere('tbl_subjects.nombre', 'LIKE', '%' . $search . '%')->paginate(5);
+
+        return view('teacher.searchteacher', compact('teachers'));
     }
 }
