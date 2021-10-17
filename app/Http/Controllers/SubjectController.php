@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SubjectsExport;
 use App\Models\tbl_subjects;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SubjectController extends Controller
 {
@@ -11,6 +13,11 @@ class SubjectController extends Controller
     {
         $subjects = tbl_subjects::orderBy('id', 'desc')->paginate(5);
         return view('subject/subjects', compact('subjects'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new SubjectsExport, 'subjects.xlsx');
     }
 
     public function create(Request $request, tbl_subjects $subjects)
@@ -47,12 +54,12 @@ class SubjectController extends Controller
             return redirect()->back()->with('message', 'Subject can"t not be update');
         }
     }
-    
+
     public function search(Request $request)
     {
         $search = $request->search;
 
-        $subjects = tbl_subjects::where('nombre','LIKE','%' . $search . '%')->paginate(5);
+        $subjects = tbl_subjects::where('nombre', 'LIKE', '%' . $search . '%')->paginate(5);
         return view('subject.searchsubject', compact('subjects'));
     }
 }

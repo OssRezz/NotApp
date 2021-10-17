@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TeacherExport;
 use App\Models\tbl_subjects;
 use App\Models\tbl_teachers;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
@@ -23,6 +25,11 @@ class TeacherController extends Controller
 
         $subjects = tbl_subjects::all();
         return view('teacher/teacher', compact('teachers', 'subjects'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new TeacherExport, 'teachers.xlsx');
     }
 
     /**

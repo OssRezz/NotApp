@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ScoresExport;
 use App\Models\tbl_scores;
 use App\Models\tbl_students;
 use App\Models\tbl_subjects;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ScoreController extends Controller
 {
@@ -22,6 +24,11 @@ class ScoreController extends Controller
 
 
         return view('score.score', compact('score', 'students', 'subjects'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new ScoresExport, 'score.xlsx');
     }
 
     public function create(Request $request, tbl_scores $score)

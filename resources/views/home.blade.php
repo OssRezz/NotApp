@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@section('title','Home')
+@section('title', 'Home')
 @section('content')
 
 
@@ -26,93 +26,82 @@
             </div>
 
             <div class="two column stackable row centered">
-                <div class="one column">
-                    <div class="container">
+                <div class="two  column">
+                    <div class="container ">
 
-                        <div class="ui cards">
+                        <div class="ui link cards">
+
                             <div class="card">
                                 <div class="content">
-                                    <div class="header">Elliot Fu</div>
+                                    <div class="header"><i class="flag icon"></i> Users report</div>
                                     <div class="description">
-                                        Elliot Fu is a film-maker from New York.
+                                        Download all the users from data base
                                     </div>
                                 </div>
                                 <div class="ui bottom attached button">
-                                    <i class="add icon"></i>
-                                    Add Friend
+                                    <a href="{{ route('users.export') }}" class="ui gray header small">Download <i
+                                            class="download icon"></i></a>
                                 </div>
                             </div>
+
                             <div class="card">
                                 <div class="content">
-                                    <div class="header">Veronika Ossi</div>
+                                    <div class="header"><i class="flag icon"></i> Teachers report</div>
                                     <div class="description">
-                                        Veronika Ossi is a set designer living in New York who enjoys kittens, music,
-                                        and partying.
+                                        Download all the teachers from data base
                                     </div>
                                 </div>
                                 <div class="ui bottom attached button">
-                                    <i class="add icon"></i>
-                                    Add Friend
+                                    <a href="{{ route('teacher.export') }}" class="ui gray header small">Download <i
+                                            class="download icon"></i></a>
                                 </div>
                             </div>
+
                             <div class="card">
                                 <div class="content">
-                                    <div class="header">Jenny Hess</div>
+                                    <div class="header"><i class="flag icon"></i> Students report</div>
                                     <div class="description">
-                                        Jenny is a student studying Media Management at the New School
+                                        Download all the students from data base
                                     </div>
                                 </div>
                                 <div class="ui bottom attached button">
-                                    <i class="add icon"></i>
-                                    Add Friend
+                                    <a href="{{ route('student.export') }}" class="ui gray header small">Download <i
+                                            class="download icon"></i></a>
                                 </div>
                             </div>
+
+
+                            <div class="card">
+                                <div class="content">
+                                    <div class="header"><i class="flag icon"></i> Subjects report</div>
+                                    <div class="description">
+                                        Download all the subjects from data base
+                                    </div>
+                                </div>
+                                <div class="ui bottom attached button">
+                                    <a href="{{ route('subjects.export') }}" class="ui gray header small">Download <i
+                                            class="download icon"></i></a>
+                                </div>
+                            </div>
+
+                            <div class="card ">
+                                <div class="content">
+                                    <div class="header"><i class="flag icon"></i> Score report</div>
+                                    <div class="description">
+                                        Download the score of the students from data base
+                                    </div>
+                                </div>
+                                <div class="ui bottom attached button">
+                                    <a href="{{ route('score.export') }}" class="ui gray header small">Download <i
+                                            class="download icon"></i></a>
+                                </div>
+                            </div>
+
                         </div>
-
-                        <div class="ui cards">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="header">Elliot Fu</div>
-                                    <div class="description">
-                                        Elliot Fu is a film-maker from New York.
-                                    </div>
-                                </div>
-                                <div class="ui bottom attached button">
-                                    <i class="add icon"></i>
-                                    Add Friend
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="content">
-                                    <div class="header">Veronika Ossi</div>
-                                    <div class="description">
-                                        Veronika Ossi is a set designer living in New York who enjoys kittens, music,
-                                        and partying.
-                                    </div>
-                                </div>
-                                <div class="ui bottom attached button">
-                                    <i class="add icon"></i>
-                                    Add Friend
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="content">
-                                    <div class="header">Jenny Hess</div>
-                                    <div class="description">
-                                        Jenny is a student studying Media Management at the New School
-                                    </div>
-                                </div>
-                                <div class="ui bottom attached button">
-                                    <i class="add icon"></i>
-                                    Add Friend
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                </div>
+
             </div>
-
         </div>
+    </div>
 
-    @endsection
+@endsection

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UserExport;
 use App\Models\tbl_profiles;
 use App\Models\tbl_users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -17,6 +17,11 @@ class UserController extends Controller
         $user = tbl_users::orderBy('id', 'asc')->paginate(5);
         $profiles = tbl_profiles::all();
         return view('user/users', compact('user', 'profiles'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new UserExport, 'users.xlsx');
     }
 
 

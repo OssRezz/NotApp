@@ -42,6 +42,8 @@ Route::get('users/{user}/edit', [UserController::class, 'editView'])->name('user
 Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
 //Search user
 Route::get('users/search', [UserController::class, 'search']);
+//Export user
+Route::get('users/export', [UserController::class, 'export'])->name('users.export');
 
 
 //View teacher
@@ -54,6 +56,9 @@ Route::get('teacher/{teachers}/edit', [TeacherController::class, 'editView'])->n
 Route::put('teacher/{teachers}', [TeacherController::class, 'update'])->name('teacher.update');
 //Search teacher
 Route::get('teacher/search', [TeacherController::class, 'search']);
+//Export teacher
+Route::get('teacher/export', [TeacherController::class, 'export'])->name('teacher.export');
+
 
 //View Student
 Route::get('students', [StudentController::class, 'studentsView'])->name('students')->middleware('auth');
@@ -65,6 +70,8 @@ Route::get('students/{students}/edit', [StudentController::class, 'editView'])->
 Route::put('students/{students}', [StudentController::class, 'update'])->name('student.update');
 //Search student
 Route::get('students/search', [StudentController::class, 'search']);
+//Export student
+Route::get('student/export', [StudentController::class, 'export'])->name('student.export');
 
 
 //View subjects
@@ -77,6 +84,8 @@ Route::get('subjects/{subjects}/edit', [SubjectController::class, 'editView'])->
 Route::put('subjects/{subjects}', [SubjectController::class, 'update'])->name('subjects.update');
 //Search subject
 Route::get('subjects/search', [SubjectController::class, 'search']);
+//Export subject
+Route::get('subjects/export', [SubjectController::class, 'export'])->name('subjects.export');
 
 
 //View score
@@ -89,3 +98,5 @@ Route::get('score/{score}/edit', [ScoreController::class, 'editView'])->name('sc
 Route::put('score/{score}', [ScoreController::class, 'update'])->name('score.update');
 //Search score
 Route::get('score/search', [ScoreController::class, 'search']);
+//Export score
+Route::get('score/export', [ScoreController::class, 'export'])->name('score.export');

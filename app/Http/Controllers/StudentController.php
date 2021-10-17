@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\StudentsExport;
 use App\Models\tbl_students;
 use App\Models\tbl_users;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -12,6 +14,11 @@ class StudentController extends Controller
     {
         $students = tbl_students::orderBy('id', 'desc')->paginate(5);
         return view('student/student', compact('students'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new StudentsExport, 'students.xlsx');
     }
 
     public function create(Request $request, tbl_students $student)

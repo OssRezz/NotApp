@@ -92,7 +92,7 @@
                                 <form action="students/search" method="GET">
 
                                     <div class="ui action input">
-                                        <input type="text" name="search" placeholder="Search for subjects...">
+                                        <input type="text" name="search" placeholder="Search for students...">
                                         <button type="submit" class="ui inverted purple button">Search</button>
                                     </div>
 
